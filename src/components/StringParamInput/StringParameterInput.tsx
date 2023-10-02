@@ -3,13 +3,13 @@ import { STRING_PARAMS } from "../../shared/models/parameters"
 import { AppDispatch, RootState } from "../../state/store"
 import {setName, setTokens } from "../../state/stringParameterSlice"
 import './StringParameterInputStyles.css';
-import { Dispatch } from "redux";
+import { NameActionPayload, TokensActionPayload } from "../../shared/models/actionsPayload";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 interface StringParameterProps {
     name: STRING_PARAMS,
     val: string,
-    action: ActionCreatorWithPayload<string>
+    action: ActionCreatorWithPayload<NameActionPayload | TokensActionPayload>
 }
 
 
@@ -18,7 +18,7 @@ const StringParameterInput = ({name, val, action}: StringParameterProps)=>{
 
     const dispatch = useDispatch<AppDispatch>();
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        dispatch(action(e.target.value));
+        dispatch(action());
     }
 
     return (

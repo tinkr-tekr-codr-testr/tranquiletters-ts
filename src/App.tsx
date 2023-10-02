@@ -11,7 +11,7 @@ function App() {
   return (
     
       <div>
-        <WithPanel>
+        <WithPanel label={'Verbal Stims'}>
           <VerbalParameters/>  
         </WithPanel> 
         <StimPatternModel />

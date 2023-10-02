@@ -10,7 +10,7 @@ import StringParameterInput from "../StringParamInput/StringParameterInput";
 import { ReactNode } from "react";
 
 const VerbalParameters = ()=>{
-/*        */ 
+    const tokenSetName = useSelector((state:RootState)=>state.selectedSliceReducer);
 
     const {
         ['Tokens/Cluster']:     TokensPerCluster,
@@ -18,19 +18,18 @@ const VerbalParameters = ()=>{
         ['Silence/Clusters']:   SecondsBetweenClusters
     } = useSelector((state:RootState)=>state.numParameterReducer)  
             
-    const {
-        ['Name']:   NameVal,
-        ['Tokens']: TokensVal
-    } = useSelector((state:RootState)=>state.stringParameterReducer);
+
     
     return (
         <>
+            <StringParameterInput name={'Name'} val={NameVal} action={setName}/>
+            <StringParameterInput name={'Tokens'} val={TokensVal.join(' ')} action={setTokens}/>
+
             <NumParameterInput name={'Tokens/Cluster'} val={TokensPerCluster}/>
             <NumParameterInput name={'Silence/Tokens'} val={SecondsBetweenTokens}/>
             <NumParameterInput name={'Silence/Clusters'} val={SecondsBetweenClusters}/>
             
-            <StringParameterInput name={'Name'} val={NameVal} action={setName}/>
-            <StringParameterInput name={'Tokens'} val={TokensVal.join(' ')} action={setTokens}/>
+
         </>
     )
 }

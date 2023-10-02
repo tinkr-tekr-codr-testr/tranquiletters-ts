@@ -12,13 +12,11 @@ export type STRING_PARAMS ='Tokens'|'Name';
 
 
 export interface StringParameterState {
-    'Tokens': string[],
-    'Name': string
+    [name:string]: string[],
 }
 
 export const defaultStringParams = {
-    'Tokens': [],
-    'Name': ''
+    'Default': ['a', 'b', 'c', 'd', 'e']
 }
 
 
