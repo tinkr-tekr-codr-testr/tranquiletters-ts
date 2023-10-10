@@ -6,7 +6,7 @@ import { RootState } from "./store"
 
 const usePatternModelSelector = ()=>{
      const state = useSelector((state:RootState)=>{
-        const {stringParameterReducer:Strings, numParameterReducer: Nums} = state;
+        const {tokenSliceReducer:Strings, numParameterReducer: Nums} = state;
          const {
             ['Tokens/Cluster']: TPC, 
             ['Silence/Tokens']: SBT,
@@ -14,9 +14,10 @@ const usePatternModelSelector = ()=>{
         } = Nums
 
         const {
-            ['Tokens']:Tokens, 
-            ['Name']: Name
+            sets, chosenSet
         } = Strings;
+
+        const Tokens = sets[chosenSet];
 
         const selectToken = ()=>{
             return Tokens[Math.floor(Math.random()*Tokens.length)];

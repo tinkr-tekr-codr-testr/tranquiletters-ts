@@ -1,10 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 import numParameterReducer from './numParameterSlice';
-import stringParameterReducer from './stringParameterSlice';
-import selectedSliceReducer from './selectedSlice';
+import tokenSliceReducer from './tokenSlice';
 
 export const store = configureStore({
-    reducer: {numParameterReducer, stringParameterReducer, selectedSliceReducer}
+    reducer: {numParameterReducer, tokenSliceReducer}
 });
 
 export type AppDispatch = typeof store.dispatch;

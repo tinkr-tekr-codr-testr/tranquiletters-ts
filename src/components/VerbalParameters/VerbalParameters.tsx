@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
 import { NumParameterState } from "../../shared/models/parameters";
 
+import { setName, setTokens, } from "../../state/tokenSlice";
 
-import { setName, setTokens } from "../../state/stringParameterSlice";
-import StringParameterInput from "../StringParamInput/StringParameterInput";
+import TokensParameterInput from "../StringParamInput/TokensParameterInput";
 import { ReactNode } from "react";
+import TokenNameCombobox from "../../widgets/TokenNameCombobox";
 
 const VerbalParameters = ()=>{
-    const tokenSetName = useSelector((state:RootState)=>state.selectedSliceReducer);
+
 
     const {
         ['Tokens/Cluster']:     TokensPerCluster,
@@ -18,12 +19,13 @@ const VerbalParameters = ()=>{
         ['Silence/Clusters']:   SecondsBetweenClusters
     } = useSelector((state:RootState)=>state.numParameterReducer)  
             
+    const {chosenSet} = useSelector((state: RootState) => state.tokenSliceReducer)
 
     
     return (
         <>
-            <StringParameterInput name={'Name'} val={NameVal} action={setName}/>
-            <StringParameterInput name={'Tokens'} val={TokensVal.join(' ')} action={setTokens}/>
+            <TokenNameCombobox/>
+            <TokensParameterInput tokensKey={chosenSet}/>
 
             <NumParameterInput name={'Tokens/Cluster'} val={TokensPerCluster}/>
             <NumParameterInput name={'Silence/Tokens'} val={SecondsBetweenTokens}/>

@@ -9,7 +9,6 @@ const initialState = {
         'Tokens/Cluster': 10,
         'Silence/Tokens': 2,
         'Silence/Clusters': 10
-  
 };
 
 const numParameterSlice = createSlice({
