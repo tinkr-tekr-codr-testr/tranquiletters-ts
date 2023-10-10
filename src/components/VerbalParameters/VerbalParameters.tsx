@@ -1,13 +1,9 @@
 import NumParameterInput from "../NumParameterInput/NumParameterInput";
-import { NUM_PARAMS, STRING_PARAMS, StringParameterState } from "../../shared/models/parameters";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../state/store";
-import { NumParameterState } from "../../shared/models/parameters";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 
-import { setName, setTokens, } from "../../state/tokenSlice";
 
 import TokensParameterInput from "../StringParamInput/TokensParameterInput";
-import { ReactNode } from "react";
 import TokenNameSelector from "../../widgets/TokenNameSelector";
 
 const VerbalParameters = ()=>{

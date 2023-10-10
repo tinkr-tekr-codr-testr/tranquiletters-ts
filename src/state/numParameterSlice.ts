@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NumParameterState } from "../shared/models/parameters";
-import { NUM_PARAMS } from "../shared/models/parameters";
 import { NumActionPayload } from "../shared/models/actionsPayload";
 
 

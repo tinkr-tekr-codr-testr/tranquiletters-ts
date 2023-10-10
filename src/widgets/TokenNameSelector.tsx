@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { useState } from "react";
-import { setName, chooseTokens, newTokenSet } from "../state/tokenSlice";
+import { chooseTokens, newTokenSet } from "../state/tokenSlice";
 
 const TokenNameSelector = ()=>{
     const tokenState = useSelector((state:RootState)=> state.tokenSliceReducer );

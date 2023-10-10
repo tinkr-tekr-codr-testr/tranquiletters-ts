@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { NUM_PARAMS } from "../../shared/models/parameters"
-import { AppDispatch, RootState } from "../../state/store"
+import { AppDispatch } from "../../state/store"
 import { modifyNumParameters, crementNumParameter } from "../../state/numParameterSlice"
 import './NumParameterInputStyles.css';
 

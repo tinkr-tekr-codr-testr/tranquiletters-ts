@@ -3,7 +3,6 @@ import { STIM_TYPES } from "../../shared/models/stimTypes";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import { typeToIconMap } from "../../shared/models/patternUnit";
-import { useSelector } from "react-redux";
 import usePatternModelSelector from "../../state/usePatternModelSelector";
 
 interface StimPatternModelProps {

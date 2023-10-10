@@ -1,8 +1,7 @@
 import { useDispatch, useSelector, } from "react-redux"
-import { STRING_PARAMS } from "../../shared/models/parameters"
 import { AppDispatch, RootState } from "../../state/store"
-import {setName, setTokens } from "../../state/tokenSlice"
-import { SetNamePayload, SetTokensPayload, TokenSets } from "../../state/tokenSlice";
+import {setTokens } from "../../state/tokenSlice"
+import { TokenSets } from "../../state/tokenSlice";
 
 import './StringParameterInputStyles.css';
 
