@@ -3,7 +3,7 @@ import { RootState } from "../state/store";
 import { useState } from "react";
 import { setName, chooseTokens, newTokenSet } from "../state/tokenSlice";
 
-const TokenNameCombobox = ()=>{
+const TokenNameSelector = ()=>{
     const tokenState = useSelector((state:RootState)=> state.tokenSliceReducer );
     const {sets, chosenSet} = tokenState;
     const setNames = Object.keys(sets);
@@ -52,4 +52,4 @@ const TokenNameCombobox = ()=>{
     
 }
 
-export default TokenNameCombobox;
+export default TokenNameSelector;

@@ -8,7 +8,7 @@ import { setName, setTokens, } from "../../state/tokenSlice";
 
 import TokensParameterInput from "../StringParamInput/TokensParameterInput";
 import { ReactNode } from "react";
-import TokenNameCombobox from "../../widgets/TokenNameCombobox";
+import TokenNameSelector from "../../widgets/TokenNameSelector";
 
 const VerbalParameters = ()=>{
 
@@ -24,7 +24,7 @@ const VerbalParameters = ()=>{
     
     return (
         <>
-            <TokenNameCombobox/>
+            <TokenNameSelector/>
             <TokensParameterInput tokensKey={chosenSet}/>
 
             <NumParameterInput name={'Tokens/Cluster'} val={TokensPerCluster}/>
