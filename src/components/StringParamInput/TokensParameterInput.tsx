@@ -10,8 +10,6 @@ interface TokensParameterProps {
     tokensKey: keyof TokenSets 
 }
 
-
-
 const TokensParameterInput = ({tokensKey}: TokensParameterProps)=>{
     const tokenState = useSelector((state:RootState)=>state.tokenSliceReducer);
     const {sets, chosenSet} = tokenState;
@@ -24,9 +22,7 @@ const TokensParameterInput = ({tokensKey}: TokensParameterProps)=>{
     }
 
     return (
-
         <div>
-
             <div className="center-content vertical">
                 <div text-align='center' className="control ">
                     <input  style={{width:'10rem'}} className=" is-small input " value={selectedTokens.join(' ')} id='selectedSet' onChange={updateTokens} type="text" name="selectedSet"/>

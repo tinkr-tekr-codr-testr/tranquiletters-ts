@@ -4,15 +4,18 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import { typeToIconMap } from "../../shared/models/patternUnit";
 import usePatternModelSelector from "../../state/usePatternModelSelector";
+import { useEffect } from "react";
 
 interface StimPatternModelProps {
     model : PatternUnit[]
 }
 
 const StimPatternModel = ()=>{
-    const model = usePatternModelSelector();
+    const {model, togglePatternUnit} = usePatternModelSelector();
     const isSilence = (unit:PatternUnit)=> unit.type == STIM_TYPES.Silence 
-    const stims = model.map(unit=> <FontAwesomeIcon color={isSilence(unit) ? 'white' : 'gray' } icon={typeToIconMap[unit.type]} />);
+
+
+    const stims = model.map((unit, index)=> <FontAwesomeIcon onClick={()=>togglePatternUnit(unit.type, index)} color={isSilence(unit) ? 'white' : 'gray' } icon={typeToIconMap[unit.type]} />);
     
         
 
