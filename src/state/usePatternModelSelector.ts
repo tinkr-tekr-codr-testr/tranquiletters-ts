@@ -3,6 +3,8 @@ import { PatternUnit, Silence, } from "../shared/models/patternUnit";
 import { STIM_TYPES } from "../shared/models/stimTypes";
 import { RootState } from "./store"
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { togglePatternUnit, initializeModel } from "./patternModelSlice";
 
 
 const usePatternModelSelector = ()=>{
@@ -21,7 +23,11 @@ const usePatternModelSelector = ()=>{
             sets, chosenSet
         } = Strings;
 
-        const [model, setModel] = useState(new Array<PatternUnit>())
+        const {patternModelReducer: patternModel} = state;
+
+        const dispatch = useDispatch();
+
+
         const Tokens = sets[chosenSet];
 
         const selectToken = ()=>{
@@ -29,66 +35,24 @@ const usePatternModelSelector = ()=>{
         }
     
 
-
-
-        const initialModel = [
-            ...(new Array<PatternUnit>(TPC*SBT+SBC).fill(Silence)), 
-                new PatternUnit(STIM_TYPES.End, '')
-        ];
-
-                                                //is within the cluster && is spaced out by Silence 
-        const initTokens = ()=> {
-            setModel(initialModel.map((unit, index)=> index < TPC*SBT && index % SBT == 0
-                ? new PatternUnit(STIM_TYPES.Verbal, selectToken())
-                : unit
-            ))
+       const setTokens = ()=>{
+            patternModel.forEach((unit, index)=> index < TPC*SBT && index % SBT == 0 
+                ? dispatch(togglePatternUnit({type:STIM_TYPES.Verbal, index}))
+                : dispatch(togglePatternUnit({type: STIM_TYPES.Silence, index}))
+            )
         };
 
-        useEffect(initTokens, [TPC, SBT, SBC])
+        useEffect(()=>{dispatch(initializeModel({length:TPC*SBT+SBC}))}, []);
 
-        const togglePatternUnit = (type: STIM_TYPES, index: number) =>{
-            const patternUnitSwitch = {
-                [STIM_TYPES.Verbal]: new PatternUnit(STIM_TYPES.Verbal, selectToken()),
-                [STIM_TYPES.Silence]: new PatternUnit(STIM_TYPES.Silence, ''),
-                [STIM_TYPES.SoundFX]: new PatternUnit(STIM_TYPES.SoundFX, ''),
-                [STIM_TYPES.Feedback]: new PatternUnit(STIM_TYPES.Feedback, ''),
-                [STIM_TYPES.End]: new PatternUnit(STIM_TYPES.End, ''),
-            }
+        useEffect(()=>{
+            setTokens();
 
+        }, [TPC, SBT, SBC])
 
-            const newModel = [...model];
-            if(type != STIM_TYPES.Silence)
-                newModel[index] = patternUnitSwitch[STIM_TYPES.Silence];
-            else 
-                newModel[index] = patternUnitSwitch[STIM_TYPES.Verbal];
+        
 
-            setModel(newModel);
-        }
-
-        return {model, togglePatternUnit, initTokens};
-
-            
-
-
-    
-            /*
-            switch(unit.type){
-                case STIM_TYPES.Feedback: {
-                    break;
-                }
-                case STIM_TYPES.Silence:{
-                    return unit;
-                    break;
-
-                }
-                case STIM_TYPES.SoundFX:{
-                    break;
-                }
-                case STIM_TYPES.Verbal:{
-                    
-                    break;
-                }
-            }*/}
+        return patternModel;
+}
 
 export default usePatternModelSelector;
         

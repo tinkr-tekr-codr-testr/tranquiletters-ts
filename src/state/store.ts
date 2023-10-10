@@ -4,12 +4,13 @@ import storage from 'redux-persist/lib/storage';
 
 import numParameterReducer from './numParameterSlice';
 import tokenSliceReducer from './tokenSlice';
+import patternModelReducer from './patternModelSlice';
 
 const persistConfig = {
     key: 'data',
     storage
 }
-const persistedReducer = persistReducer(persistConfig, combineReducers({numParameterReducer, tokenSliceReducer}))
+const persistedReducer = persistReducer(persistConfig, combineReducers({numParameterReducer, tokenSliceReducer, patternModelReducer}))
 
 
 
